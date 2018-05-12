@@ -1,0 +1,179 @@
+<nb-card>
+    <nb-card-header>Company registration</nb-card-header>
+    <nb-card-body *ngIf="isRender">
+        <form [formGroup]="regForm" (ngSubmit)="onSave()">
+            <input type="hidden" name="_id" formControlName="_id">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class=" input-group">
+                        <mat-form-field class="example-full-width">
+                            <input formControlName="_class" matInput placeholder="Class">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <mat-form-field class="example-full-width">
+                            <input formControlName="name" matInput placeholder="Name">
+                            <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" formGroupName="keyPerson1">
+                <input type="hidden" name="_id" formControlName="_id">
+                <div class="col-md-12 bdr-b p-10">
+                    Person one..
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <mat-form-field class="example-full-width">
+                            <input formControlName="name" matInput placeholder="Name">
+                            <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <mat-form-field class="example-full-width">
+                            <input formControlName="mobile" matInput placeholder="Mobile">
+                            <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row" formGroupName="keyPerson2">
+                <input type="hidden" name="_id" formControlName="_id">
+                <div class="col-md-12 bdr-b p-10">
+                    Person two..
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <mat-form-field class="example-full-width">
+                            <input formControlName="name" matInput placeholder="Name">
+                            <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <mat-form-field class="example-full-width">
+                            <input formControlName="mobile" matInput placeholder="Mobile">
+                            <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 bdr-b p-10">
+                    Shift Details
+                </div>
+                <div class="col-md-12">
+                    <shift [shift]=companyShift (shiftSave)="onshiftSave($event)"></shift>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-table #shiftTable [dataSource]="shiftDataSource">
+
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let element" title="{{element.name}}"> {{element.name}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="starttime">
+                            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> Start Time </mat-header-cell>
+                            <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs> {{element.starttime| date:'short'}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="endtime">
+                            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> PersonTwo </mat-header-cell>
+                            <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs title="{{element.endtime | date:'short'}}"> {{element.endtime | date:'short'}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="Action">
+                            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <button mat-icon-button type="button">
+                                    <mat-icon (click)="onDelete(element._id)" aria-label="Delete" matTooltip="Delete">delete</mat-icon>
+                                </button>
+                                <button mat-icon-button type="button">
+                                    <mat-icon (click)="onEdit(element._id)" aria-label="Edit" matTooltip="Edit">mode_edit</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="shiftDisplayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: shiftDisplayedColumns;"></mat-row>
+                    </mat-table>
+                    <div class="example-no-results" [style.display]="shiftDataSource?.data.length == 0 ? '' : 'none'">
+                        No Shift found..
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 bdr-b p-10">
+                    Location Details
+                </div>
+                <div class="col-md-12">
+                    <location [location]=companyLocation (locationSave)="onLocationSave($event)"></location>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-table #locationTable [dataSource]="locationDataSource">
+
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let element" title="{{element.name}}"> {{element.name}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="landmark">
+                            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> Landmark </mat-header-cell>
+                            <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs> {{element.landmark}} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="city">
+                            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> City </mat-header-cell>
+                            <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs title="{{element.city }}"> {{element.city }} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="state">
+                            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> State </mat-header-cell>
+                            <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs title="{{element.state }}"> {{element.state }} </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="Action">
+                            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <button mat-icon-button type="button">
+                                    <mat-icon (click)="onDelete(element._id)" aria-label="Delete" matTooltip="Delete">delete</mat-icon>
+                                </button>
+                                <button mat-icon-button type="button">
+                                    <mat-icon (click)="onEdit(element._id)" aria-label="Edit" matTooltip="Edit">mode_edit</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="locationDisplayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: locationDisplayedColumns;"></mat-row>
+                    </mat-table>
+                    <div class="example-no-results p-10" [style.display]="locationDataSource?.data.length == 0 ? '' : 'none'">
+                        No Location found.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <button mat-raised-button color="primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

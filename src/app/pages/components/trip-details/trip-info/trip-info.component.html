@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-4">
+    <nb-card>
+      <nb-card-header>Vehicle Details</nb-card-header>
+      <nb-card-body>
+          <div class="row">
+              <div class="col-md-12">
+                  Id : {{trip.vehicle.Id}}
+              </div>
+              <div class="col-md-12">
+                  Number : {{trip.vehicle.VNumber}}
+              </div>
+              <div class="col-md-12">
+                  Name : {{trip.vehicle.VName}}
+              </div>
+              <div class="col-md-12">
+                  Model : {{trip.vehicle.VModel}}
+              </div>
+            </div>
+        
+        
+        
+        
+      </nb-card-body>
+    </nb-card>
+      
+  </div>
+  <div class="col-md-4">
+      <nb-card>
+        <nb-card-header>Route Details</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-12">
+                    Id : {{trip.route.Id}}
+                </div>
+                <div class="col-md-12">
+                    Place : {{trip.route.place}}
+                </div>
+                <div class="col-md-12">
+                    Duration : {{trip.route.duration}}
+                </div>
+              </div>
+        </nb-card-body>
+      </nb-card>
+        
+    </div>
+    <div class="col-md-4">
+        <nb-card>
+          <nb-card-header>Driver Details</nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-md-12">
+                  Id : {{trip.driver.Id}}
+              </div>
+              <div class="col-md-12">
+                  Name : {{trip.driver.DName}}
+              </div>
+              <div class="col-md-12">
+                  Mobile : {{trip.driver.DMobile}}
+              </div>
+              <div class="col-md-12">
+                  Date : {{trip.driver.DDate}}
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+          
+      </div>
+</div>

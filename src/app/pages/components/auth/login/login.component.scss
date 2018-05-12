@@ -1,0 +1,25 @@
+nb-card{
+    height: calc(100vh - 2 * 2.5rem);
+    margin: 0 ;
+}
+nb-card-body{
+    display: flex;
+}
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-centered{
+    margin: auto;
+}
+.title{
+    margin-bottom: .75rem;
+    text-align: center;
+}
+.sub-title{
+    margin-bottom: 2rem;
+    text-align: center;
+
+}

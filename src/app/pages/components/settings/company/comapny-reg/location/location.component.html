@@ -1,0 +1,89 @@
+<form [formGroup]="locationForm" (ngSubmit)="onLocationSave()" *ngIf="isRender">
+
+ 
+  <input formControlName="Index" type="hidden">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="country" matInput placeholder="country">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="state" matInput placeholder="state">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="city" matInput placeholder="city">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="areaname" matInput placeholder="areaname">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="landmark" matInput placeholder="landmark">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="name" matInput placeholder="name">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <textarea formControlName="address" matInput placeholder="address"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row" formGroupName="latlng">
+
+      <div class="col-md-12 p-15">
+        <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="selectPlace($event)">
+          <agm-marker [latitude]="pointerlat" [longitude]="pointerlng"></agm-marker>
+        </agm-map>
+      </div>
+      <div class="col-md-6">
+        
+        <div class="input-group">
+          <mat-form-field class="example-full-width">
+            <input formControlName="lat" matInput placeholder="Latitude">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+          <mat-form-field class="example-full-width">
+            <input formControlName="lng" matInput placeholder="Longitude">
+          </mat-form-field>
+        </div>
+      </div>
+  
+    </div>
+  <div class="input-group">
+    <button [disabled]="!locationForm.valid" mat-raised-button color="primary">Add Shift</button>
+  </div>
+</form>

@@ -1,0 +1,45 @@
+<nb-card>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-md-2">
+                <mat-sidenav #sidenav mode="side" class="example-sidenav" [ngStyle]="{ 'width.em': sidenavWidth }" opened="true">
+                    <mat-nav-list>
+                        <mat-list-item routerLink="add-company" routerLinkActive="active">
+                            <mat-icon mat-list-icon>
+                                <i class="material-icons">account_balance</i>
+                            </mat-icon>
+                            <div class="sidenav-item">
+                                <span>Company</span>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item routerLink="add-driver" routerLinkActive="active">
+                            <mat-icon mat-list-icon>link</mat-icon>
+                            <div class="sidenav-item">
+                                <span>Driver</span>
+                            </div>
+                        </mat-list-item>
+
+                        <mat-list-item routerLink="add-car" routerLinkActive="active">
+                            <mat-icon mat-list-icon>face</mat-icon>
+                            <div class="sidenav-item">
+                                <span>Car</span>
+                                <!-- <h5>Component 1</h5> -->
+                            </div>
+                        </mat-list-item>
+
+                        <mat-list-item routerLink="add-route" routerLinkActive="active">
+                            <mat-icon mat-list-icon>home</mat-icon>
+                            <div class="sidenav-item">
+                                <span>Route</span>
+                                <!-- <h5>Component 1</h5> -->
+                            </div>
+                        </mat-list-item>
+                    </mat-nav-list>
+                </mat-sidenav>
+            </div>
+            <div class="col-md-10">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

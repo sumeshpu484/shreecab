@@ -1,0 +1,67 @@
+<div class="row" *ngIf="!createMode">
+    <div class="col-md-6">
+        <div class="center text-center">
+            <span>Company List</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="pull-right pb1">
+
+            <button mat-fab color="primary">
+                <mat-icon (click)="create()" aria-label="Create" matTooltip="Create">add</mat-icon>
+            </button>
+
+        </div>
+    </div>
+    <div class="col-md-12">
+        <mat-table #table [dataSource]="dataSource">
+            <ng-container matColumnDef="_primeryId">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element._primeryId}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element" title="{{element.name}}"> {{element.name}} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="keyPerson1">
+                <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> PersonOne </mat-header-cell>
+                <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs> {{element.keyPerson1.name}} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="keyPerson2">
+                <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> PersonTwo </mat-header-cell>
+                <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs title="{{element.keyPerson2}}"> {{element.keyPerson2.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="_class">
+                <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> Class </mat-header-cell>
+                <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs title="{{element._class}}"> {{element._class}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button type="button">
+                        <mat-icon (click)="onDelete(element._id)" aria-label="Delete" matTooltip="Delete">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon (click)="onEdit(element._id)" aria-label="Edit" matTooltip="Edit">mode_edit</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <!-- <div class="example-no-results" [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
+            No users found matching filter.
+        </div> -->
+    </div>
+</div>
+<div *ngIf="createMode">
+    <company-reg [company]=company (companySave)="onCompanySave($event)">
+    </company-reg>
+</div>

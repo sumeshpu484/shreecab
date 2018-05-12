@@ -1,0 +1,46 @@
+<form [formGroup]="shiftForm" (ngSubmit)="onShiftSave()" *ngIf="isRender">
+  <input type="hidden" name="id" formControlName="id">
+  <input formControlName="Index" type="hidden">
+  <div class="row">
+    <div class="col-md-6">
+      
+      <div class=" input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="name" matInput placeholder="Name">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+          <mat-checkbox formControlName="isactive" class="chk-center"> Active ? </mat-checkbox>
+      </div>
+    </div>
+
+  </div>
+  <div class="row" >
+    <div class="col-md-6">
+      <div class="input-group">
+        <mat-form-field class="example-full-width">
+          <input formControlName="starttime" matInput [matDatepicker]="starttime" placeholder="Start Time">
+          <mat-datepicker-toggle matSuffix [for]="starttime"></mat-datepicker-toggle>
+          <mat-datepicker #starttime ></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+          <mat-form-field class="example-full-width">
+              <input formControlName="endtime" matInput [matDatepicker]="endtime" placeholder="Start Time">
+              <mat-datepicker-toggle matSuffix [for]="endtime"></mat-datepicker-toggle>
+              <mat-datepicker #endtime ></mat-datepicker>
+            </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button class="pull-right" [disabled]="!shiftForm.valid" mat-raised-button color="primary">Add Shift</button>
+
+    </div>
+  </div>
+  <div class="input-group pb-10">
+  </div>
+</form>

@@ -1,0 +1,77 @@
+<nb-card>
+  <nb-card-header>Add Driver</nb-card-header>
+  <nb-card-body>
+
+        <mat-tab-group mat-stretch-tabs>
+          <mat-tab label="On Going">
+
+              <mat-table #tripTable [dataSource]="dataSource">
+                <ng-container matColumnDef="Id">
+                  <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="VNo">
+                  <mat-header-cell *matHeaderCellDef> VNo </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.vehicle.VName}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Status">
+                  <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> Status </mat-header-cell>
+                  <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs> {{element.status}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Name">
+                  <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs title="{{element.Name}}"> {{element.Name}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                  <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <button mat-icon-button type="button">
+                      <mat-icon (click)="onSelect(element)" aria-label="Edit" matTooltip="Delete">delete</mat-icon>
+                    </button>
+                    <!-- <button mat-icon-button type="button">
+                      <mat-icon (click)="onEdit(element._id)" aria-label="Edit" matTooltip="Edit">mode_edit</mat-icon>
+                    </button> -->
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+           
+          </mat-tab>
+          <mat-tab label="Up coming">
+            
+              The Second Content
+              dfdfsdf
+              sfsdfsdf
+              sd
+
+              sdf
+              sfsdfsdf
+
+            
+          </mat-tab>
+          <mat-tab label="Delayed">
+            <!-- <ng-template matTabContent> -->
+              The Second Content
+            <!-- </ng-template> -->
+          </mat-tab>
+        </mat-tab-group>
+      
+  </nb-card-body>
+</nb-card>
+
+<div class="row" *ngIf="showDetails">
+  <div class="col-md-12">
+    <!-- <router-outlet>
+
+    </router-outlet> -->
+    <trip-info [trip]=trip></trip-info>
+  </div>
+</div>
